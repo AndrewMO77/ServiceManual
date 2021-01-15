@@ -12,8 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.etteplanmore.servicemanual.factorydevice.FactoryDevice;
-import com.etteplanmore.servicemanual.factorydevice.FactoryDeviceRepository;
+import com.etteplanmore.servicemanual.model.FactoryDevice;
+import com.etteplanmore.servicemanual.repository.FactoryDeviceRepository;
 
 @SpringBootApplication
 public class ServiceManualApplication {
