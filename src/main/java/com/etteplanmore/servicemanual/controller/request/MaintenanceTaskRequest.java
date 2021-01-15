@@ -1,4 +1,4 @@
-package com.etteplanmore.servicemanual.controller.dto;
+package com.etteplanmore.servicemanual.controller.request;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +11,7 @@ import com.etteplanmore.servicemanual.model.UrgencyCategoryEnum;
 import lombok.Data;
 
 @Data
-public class MaintenanceTaskDTO {
+public class MaintenanceTaskRequest {
 
 	String subject;
 	LocalDateTime completedTimestamp;

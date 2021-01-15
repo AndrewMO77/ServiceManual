@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.etteplanmore.servicemanual.controller.dto.MaintenanceTaskDTO;
+import com.etteplanmore.servicemanual.controller.request.MaintenanceTaskRequest;
 import com.etteplanmore.servicemanual.model.MaintenanceTask;
 import com.etteplanmore.servicemanual.service.MaintenanceService;
 
@@ -35,7 +35,7 @@ public class MaintenanceController {
 	@Operation(summary = "Create new maintenance task")
 	@ApiResponses(value = { @ApiResponse(responseCode = "204", description = "Task creation ok", content = @Content) })
 	@PostMapping("")
-	public ResponseEntity<Void> createMaintenanceTask(@RequestBody MaintenanceTaskDTO maintenanceTaskDTO) {
+	public ResponseEntity<Void> createMaintenanceTask(@RequestBody MaintenanceTaskRequest maintenanceTaskRequest) {
 		return null;
 	}
 
@@ -46,7 +46,7 @@ public class MaintenanceController {
 			@ApiResponse(responseCode = "404", description = "Task not found", content = @Content) })
 	@PutMapping("/{taskId}")
 	public ResponseEntity<MaintenanceTask> updateMaintenanceTask(@PathVariable() Long maintenanceTaskId,
-			@RequestBody MaintenanceTaskDTO maintenanceTaskDTO) {
+			@RequestBody MaintenanceTaskRequest maintenanceTaskRequest) {
 		return null;
 	}
 

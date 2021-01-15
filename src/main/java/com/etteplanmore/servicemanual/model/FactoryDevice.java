@@ -24,6 +24,9 @@ public class FactoryDevice implements Serializable {
     private int year;
     private String type;
     
+    public FactoryDevice() {
+    }
+    
     public FactoryDevice(String name, int year, String type) {
     	this.name = name;
     	this.year = year;
