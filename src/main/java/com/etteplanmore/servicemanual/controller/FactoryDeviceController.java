@@ -10,8 +10,10 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequestMapping(ControllerHelper.apiBaseUrl + "/device")
 public class FactoryDeviceController {
 
     private final FactoryDeviceRepository repository;
@@ -20,12 +22,12 @@ public class FactoryDeviceController {
         this.repository = repository;
     }
 
-    @GetMapping("/factorydevices")
-    List<FactoryDevice> all() {
+    @GetMapping()
+    List<FactoryDevice> getAllDevices() {
         return repository.findAll();
     }
 
-    @GetMapping("/factorydevices/{id}")
+    @GetMapping("/{id}")
     FactoryDevice one(@PathVariable Long id) {
         return repository.findById(id)
             .orElseThrow(() -> new FactoryDeviceNotFoundException(id));
