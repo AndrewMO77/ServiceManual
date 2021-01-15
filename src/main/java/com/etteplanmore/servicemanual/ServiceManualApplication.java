@@ -1,38 +1,54 @@
 package com.etteplanmore.servicemanual;
 
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.etteplanmore.servicemanual.factorydevice.FactoryDeviceRepository;
-import com.etteplanmore.servicemanual.factorydevice.FactoryDevice;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.etteplanmore.servicemanual.factorydevice.FactoryDevice;
+import com.etteplanmore.servicemanual.factorydevice.FactoryDeviceRepository;
+
 @SpringBootApplication
 public class ServiceManualApplication {
 
-    public static void main(final String[] args) {
-        SpringApplication.run(ServiceManualApplication.class, args);
-    }
+	public static void main(final String[] args) {
+		SpringApplication.run(ServiceManualApplication.class, args);
+	}
 
-    @Bean
-    public CommandLineRunner commandLineRunner(final FactoryDeviceRepository repository) {
-        return (args) -> {
-
-            /**
-             * Remove this. Temporary device storage before proper data storage is implemented.
-             */
-            final List<FactoryDevice> devices = Arrays.asList(
-                new FactoryDevice("Device X", 2001, "type 10"),
-                new FactoryDevice("Device Y", 2012, "type 3"),
-                new FactoryDevice("Device Z", 1985, "type 1")
-            );
-
-            repository.saveAll(devices);
-        };
-    }
+	@Bean
+	public CommandLineRunner commandLineRunner(final FactoryDeviceRepository factoryDeviceRepository) {
+		return (args) -> {
+			Logger logger = LoggerFactory.getLogger(ServiceManualApplication.class);
+			/*
+			 * Values in the CSV are in the following order Name,Year,Type
+			 */
+			List<FactoryDevice> factoryDevices = new ArrayList<FactoryDevice>();
+			try (BufferedReader bufferedReader = new BufferedReader(new FileReader("seeddata.csv"))) {
+				String line;
+				while ((line = bufferedReader.readLine()) != null) {
+					String[] values = line.split(",");
+					try {
+						String name = values[0];
+						int year = Integer.parseInt(values[1]);
+						String type = values[2];
+						FactoryDevice factoryDevice = new FactoryDevice(name, year, type);
+						logger.debug(factoryDevice.toString());
+						factoryDevices.add(new FactoryDevice(name, year, type));
+					} catch (NumberFormatException ex) {
+						logger.warn("Failed to parse device year from the seed data with name={} value={} type={}",
+								values[0], values[1], values[2]);
+					}
+				}
+			}
+			factoryDeviceRepository.saveAll(factoryDevices);
+		};
+	}
 
 }
