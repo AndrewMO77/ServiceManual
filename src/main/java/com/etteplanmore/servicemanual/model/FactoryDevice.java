@@ -1,12 +1,17 @@
 package com.etteplanmore.servicemanual.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 
@@ -24,6 +29,10 @@ public class FactoryDevice implements Serializable {
     private int year;
     private String type;
     
+    @JsonBackReference
+    @OneToMany(mappedBy="factoryDevice", cascade = CascadeType.ALL)
+    private Set<MaintenanceTask> maintenanceTasks;
+    
     public FactoryDevice() {
     }
     
@@ -31,6 +40,10 @@ public class FactoryDevice implements Serializable {
     	this.name = name;
     	this.year = year;
     	this.type = type;
+    }
+    
+    public void addMaintenanceTask(MaintenanceTask maintenanceTask) {
+    	this.maintenanceTasks.add(maintenanceTask);
     }
 
 }

@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class FactoryDeviceNotFoundAdvice {
+class MaintenanceTaskAdvice {
 
     @ResponseBody
-    @ExceptionHandler(FactoryDeviceNotFoundException.class)
+    @ExceptionHandler(MaintenanceTaskNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    ResponseEntity<ErrorMessage> factoryDeviceNotFoundHandler(FactoryDeviceNotFoundException ex) {
+    ResponseEntity<ErrorMessage> maintenanceTaskNotFound(MaintenanceTaskNotFoundException ex) {
     	ErrorMessage errorMessage= new ErrorMessage(ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }

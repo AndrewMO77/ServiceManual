@@ -22,4 +22,6 @@ public class MaintenanceTaskRequest {
 
 	@Enumerated(EnumType.STRING)
 	TaskStatusEnum taskStatus;
+	
+	Long factoryDeviceId;
 }
