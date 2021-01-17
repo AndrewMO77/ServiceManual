@@ -18,6 +18,9 @@ In a nutshell:
 - Java 1.8
 - Spring Boot 2.3.7
 - H2 in memory database
+- Lombok
+- ModelMapper 2.3.9
+- SpringDoc 1.2.32
 
 ## API description
 Application provides simple API description with Swagger. 
