@@ -22,13 +22,13 @@ public class FactoryDeviceControllerTest {
 
     @Test
     public void getFactoryDevices() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/factorydevices").accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/api/v1/device").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
     }
 
     @Test
     public void getFactoryDeviceNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/factorydevices/999").accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/api/v1/device/9999").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
     }
 }
