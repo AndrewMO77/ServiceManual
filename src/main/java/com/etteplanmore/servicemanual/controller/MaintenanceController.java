@@ -27,7 +27,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
-@RequestMapping(ControllerHelper.apiBaseUrl + "/maitenance")
+@RequestMapping(ControllerHelper.apiBaseUrl + "/maintenance")
 public class MaintenanceController {
 
 	@Autowired
